@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Вітаємо, з Днем народження!</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="🎁 Вітаємо з Днем народження! Натисни на зображення — тебе чекає привітання🎈" />
+  <meta property="og:image" content="https://dariatkachenko-prog.github.io/HappyBirthdayDasha/preview.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://dariatkachenko-prog.github.io/HappyBirthdayDasha/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="🎁 Вітаємо з Днем народження! Натисни на зображення — тебе чекає привітання🎈" />
+  <meta name="twitter:image" content="https://dariatkachenko-prog.github.io/HappyBirthdayDasha/preview.jpg" />
+
+  <!-- Email Preview -->
+  <meta name="description" content="🎁 Вітаємо з Днем народження! Натисни на зображення — тебе чекає привітання🎈" />
+  <meta name="keywords" content="День народження, привітання, подарунок, сюрприз, святкування" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- External styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Базовые встроенные стили (можно перенести потом в style.css) -->
+  <style>
+    :root {
+      --main-font: 'Dancing Script', cursive, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--main-font);
+    }
+
+    .h1-line,
+    .click-text,
+    .congrats-text p {
+      font-family: var(--main-font);
+    }
+
+    /* Класс hidden — не display:none, чтобы анимации могли срабатывать */
+    .hidden {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .click-text {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>
+      <span class="h1-line line1">ЮЛІЯ 🎉</span>
+      <span class="h1-line line2">ВІТАЄМО ТЕБЕ З ДНЕМ НАРОДЖЕННЯ!</span>
+    </h1>
+
+    <div class="emoji-container" id="emoji-wrapper" aria-label="Натисни на смайлик, щоб побачити привітання">
+      <img src="smiley.png" alt="Смайлик" id="smiley" class="floating" role="button" aria-label="Смайлик — натисни" tabindex="0" />
+
+      <div class="balloons hidden" id="balloons" aria-hidden="true">
+        <img src="balloons.png" alt="Шарики" /> <!-- Картинка с множеством шариков -->
+      </div>
+      <span class="click-text">Натисни на смайлик 👇</span>
+    </div>
+
+    <div class="congrats-wrapper hidden" aria-live="polite">
+      <div class="congrats-text">
+        <div class="congrats-text-inner">
+          <p>
+            <span class="line">Бажаємо знаходити гармонію в кожному кроці,</span><br />
+            <span class="line">щоб життя дарувало радість у найдрібніших деталях.</span><br />
+            <span class="line">Нехай буде безліч можливостей для нових досягнень,</span><br />
+            <span class="line">де кожен день приносить нові ідеї та емоції!</span><br /><br />
+            <em class="signature">Твоя команда АФ “Наша Бухгалтерія”✨</em>
+          </p>
+        </div>
+      </div>
+      <div class="congrats-photo">
+        <img src="congrats-image.png" alt="Привітальне фото" />
+      </div>
+    </div>
+  </div>
+
+  <audio id="bg-music" src="music.mp3" loop></audio>
+  <audio id="open-sound" src="open.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
