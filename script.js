@@ -67,6 +67,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  // Функция для воспроизведения музыки в последовательности
+  const playFirstThenSecondMusic = () => {
+    return new Promise((resolve, reject) => {
+      if (openSound) {
+        console.log("Воспроизведение первой музыки...");
+        openSound.play().then(() => {
+          // Когда первый звук закончится, начинаем воспроизведение второго
+          openSound.onended = () => {
+            console.log("Первая музыка закончена. Запуск второй...");
+            if (bgMusic) {
+              bgMusic.play().then(resolve).catch(reject); // Воспроизводим второй трек
+            }
+          };
+        }).catch(reject);
+      } else {
+        reject("Ошибка: файл первой музыки не найден!");
+      }
+    });
+  };
+
   const handleClick = async () => {
     if (hasClicked) return;
     hasClicked = true;
@@ -75,19 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
     hideSmiley();
     showBalloons();
 
-    if (openSound) {
-      console.log("Воспроизведение звука открытия...");
-      openSound.play().catch((err) => {
-        console.error("Ошибка при воспроизведении звука открытия:", err);
-      });
-    }
-
-    // Пробуем сразу начать воспроизведение фоновой музыки
-    if (bgMusic) {
-      console.log("Воспроизведение фоновой музыки...");
-      bgMusic.play().catch((err) => {
-        console.error("Ошибка при воспроизведении фоновой музыки:", err);
-      });
+    try {
+      // Воспроизведение первой музыки и затем второй
+      await playFirstThenSecondMusic();
+    } catch (err) {
+      console.error("Ошибка при воспроизведении музыки:", err);
     }
 
     await delay(BALLOONS_SHOW_DURATION); // шары держатся 4 секунды
