@@ -76,8 +76,17 @@ document.addEventListener("DOMContentLoaded", () => {
     showBalloons();
 
     if (openSound) {
+      console.log("Воспроизведение звука открытия...");
       openSound.play().catch((err) => {
         console.error("Ошибка при воспроизведении звука открытия:", err);
+      });
+    }
+
+    // Пробуем сразу начать воспроизведение фоновой музыки
+    if (bgMusic) {
+      console.log("Воспроизведение фоновой музыки...");
+      bgMusic.play().catch((err) => {
+        console.error("Ошибка при воспроизведении фоновой музыки:", err);
       });
     }
 
@@ -86,12 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
     await hideBalloons(); // ждем скрытия
 
     await delay(300); // маленькая пауза перед поздравлением
-
-    if (bgMusic) {
-      bgMusic.play().catch((err) => {
-        console.error("Ошибка при воспроизведении фоновой музыки:", err);
-      });
-    }
 
     showCongrats("dissolve");
   };
@@ -107,3 +110,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
