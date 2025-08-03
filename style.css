@@ -12,6 +12,8 @@ body {
   box-sizing: border-box;
 }
 
+
+
 .card {
   margin: 40px auto;
   padding: 20px;
@@ -345,6 +347,7 @@ h1 {
     width: 115%;
     height: auto;
     margin-top: -110px;
+    margin-right: -20px; 
   }
 
   .congrats-text {
@@ -366,6 +369,8 @@ h1 {
   display: block;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
+
 
   #balloons img {
   width: 95%; /* Шарики будут масштабироваться вместе с контейнером */
@@ -403,3 +408,18 @@ h1 {
   }
 }
 
+/* Для мобильных устройств (до 768px) */
+@media screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden; /* Запрещаем горизонтальную прокрутку */
+    overflow-y: auto; /* Разрешаем вертикальную прокрутку на мобильных устройствах */
+    height: auto; /* Высота будет адаптироваться под контент */
+    box-sizing: border-box; /* Учитываем паддинги и бордеры в ширине и высоте */
+  }
+
+  .card {
+    width: 100%; /* Карточка будет занимать 100% ширины на мобильных */
+    margin: 20px auto; /* Центрируем карточку с отступом сверху и снизу */
+    box-sizing: border-box; /* Учитываем паддинги и бордеры в ширине и высоте */
+  }
+}
