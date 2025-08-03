@@ -67,6 +67,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  // Функция для воспроизведения второй музыки после первой
+  const playSecondMusicAfterFirst = () => {
+    return new Promise((resolve, reject) => {
+      if (openSound) {
+        openSound.play().then(() => {
+          openSound.onended = () => {
+            // Когда первый звук закончится, начинаем воспроизведение второго
+            if (bgMusic) {
+              bgMusic.play().then(resolve).catch(reject); // Воспроизводим второй трек
+            }
+          };
+        }).catch(reject);
+      }
+    });
+  };
+
   const handleClick = async () => {
     if (hasClicked) return;
     hasClicked = true;
@@ -75,10 +91,12 @@ document.addEventListener("DOMContentLoaded", () => {
     hideSmiley();
     showBalloons();
 
-    if (openSound) {
-      openSound.play().catch((err) => {
-        console.error("Ошибка при воспроизведении звука открытия:", err);
-      });
+    // Воспроизведение звука открытия и фоновой музыки поочередно
+    try {
+      console.log("Запуск первой музыки...");
+      await playSecondMusicAfterFirst();
+    } catch (err) {
+      console.error("Ошибка при воспроизведении музыки:", err);
     }
 
     await delay(BALLOONS_SHOW_DURATION); // шары держатся 4 секунды
@@ -86,12 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
     await hideBalloons(); // ждем скрытия
 
     await delay(300); // маленькая пауза перед поздравлением
-
-    if (bgMusic) {
-      bgMusic.play().catch((err) => {
-        console.error("Ошибка при воспроизведении фоновой музыки:", err);
-      });
-    }
 
     showCongrats("dissolve");
   };
@@ -107,3 +119,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
